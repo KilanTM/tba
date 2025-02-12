@@ -1,4 +1,4 @@
--- Locations table
+ Locations table
 CREATE TABLE locations
 (
     id          SERIAL PRIMARY KEY,
