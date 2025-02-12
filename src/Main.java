@@ -3,6 +3,7 @@ import java.sql.*;
 
 
 public class Main {
+   public static int player_id = 0;
    public static void main(String[] args) {
       Scanner input = new Scanner(System.in);
 
@@ -30,6 +31,7 @@ public class Main {
 
                if (resultSet.next()) {
                   System.out.println("Welcome back, " + username + "! You are logged in.");
+                  start_of_story.start_of_story();
                } else {
                   System.out.println("User does not exist.");
                }
@@ -67,6 +69,14 @@ public class Main {
 
                      statement.setString(1, username);
                      statement.setString(2, password);
+                     PreparedStatement stmt2 = connection.prepareStatement("SELECT * FROM player WHERE username=?");
+                     statement.setString(1, username);
+
+                     ResultSet resultSet2 = stmt2.executeQuery();
+                     if (resultSet2.next()) {
+                        player_id = resultSet2.getInt("player_id");
+
+                     }
 
                      int es = statement.executeUpdate();
 
@@ -76,6 +86,8 @@ public class Main {
                      } else {
 
                         System.out.println("Successfully logged in.");
+                        StartOfStory.startOfStory();
+
                      }
 
                      connection.close();
