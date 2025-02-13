@@ -19,14 +19,21 @@ public class second_floor {
         locations.put("Security Operations","Used to protect the entire building. Now it's useless.");
 
         transitions.put("Floor 2 Lobby", Set.of("Command Center", "Hydrothermal Research Lab", "Pressure Stablization Unit", "Storage Depot"));
+        transitions.put("Storage Depot", Set.of("Floor 2 Lobby"));
         transitions.put("Command Center", Set.of("Security Operations", "Floor 2 Lobby"));
         transitions.put("Security Operations", Set.of("Command Center", "Deep Vault"));
         transitions.put("Deep Vault", Set.of("Security Operations"));
         transitions.put("Hydrothermal Research Lab", Set.of("Hydrophonic Garden", "Containment Chamber", "Floor 2 Lobby"));
         transitions.put("Hydrophonic Garden", Set.of("Hydrothermal Research Lab", "Containment Chamber"));
         transitions.put("Containment Chamber", Set.of("Hydrothermal Research Lab"));
+        transitions.put("Pressure Stablization Unit", Set.of("Reactor Chamber"));
+        transitions.put("Reactor Chamber", Set.of("Pressure Stablization Unit"));
     }
 
+    private static void getLocation(String location) {
+        System.out.println("You entered the " + location + ".");
+        System.out.println(locations.get(location));
+    }
 
     public static void second_floor2() {
         Scanner scanner = new Scanner(System.in);
@@ -49,8 +56,6 @@ public class second_floor {
         }
     }
 
-    public static void changeLocation(String[] args) {
 
-    }
 
 }

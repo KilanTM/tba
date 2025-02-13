@@ -92,6 +92,15 @@ class StartOfStory {
 
                             }
                         } else if (quarter.equals("2")) {
+                            try {
+                                Connection connection = DriverManager.getConnection("jdbc:postgrtesql:project_posgresql", "jasonwoodruff", "8608");
+                                PreparedStatement statement = connection.prepareStatement("SELECT * FROM player WHERE id = ?");
+                                statement.setInt(1, Main.player_id);
+                            }catch(SQLException ex){
+                                ex.printStackTrace();
+                                System.exit(5);
+                            }
+
 
 
                         } else if (quarter.equals("3")) {
