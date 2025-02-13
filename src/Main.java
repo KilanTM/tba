@@ -25,16 +25,19 @@ public class Main {
                statement.setString(2, password);
 
                ResultSet resultSet = statement.executeQuery();
-               connection.close();
-               statement.close();
+
 
 
                if (resultSet.next()) {
                   System.out.println("Welcome back, " + username + "! You are logged in.");
-                  start_of_story.start_of_story();
+                  player_id = resultSet.getInt("id");
+                  StartOfStory.startOfStory();
+                  break;
                } else {
                   System.out.println("User does not exist.");
                }
+               connection.close();
+               statement.close();
 
 
             } catch (SQLException e) {
@@ -70,7 +73,8 @@ public class Main {
                      statement.setString(1, username);
                      statement.setString(2, password);
                      PreparedStatement stmt2 = connection.prepareStatement("SELECT * FROM player WHERE username=?");
-                     statement.setString(1, username);
+
+                     stmt2.setString(1, username);
 
                      ResultSet resultSet2 = stmt2.executeQuery();
                      if (resultSet2.next()) {
@@ -87,7 +91,7 @@ public class Main {
 
                         System.out.println("Successfully logged in.");
                         StartOfStory.startOfStory();
-
+                        break;
                      }
 
                      connection.close();
