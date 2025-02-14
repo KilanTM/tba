@@ -1,7 +1,7 @@
 import java.util.*;
 import java.sql.*;
 
-import static java.awt.Color.blue;
+
 
 class StartOfStory {
     public static int item_flash = 0;
@@ -96,6 +96,10 @@ class StartOfStory {
                                 Connection connection = DriverManager.getConnection("jdbc:postgrtesql:project_posgresql", "jasonwoodruff", "8608");
                                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM player WHERE id = ?");
                                 statement.setInt(1, Main.player_id);
+                                statement.executeQuery();
+                                while (statement.execute()) {
+
+                                }
                             }catch(SQLException ex){
                                 ex.printStackTrace();
                                 System.exit(5);
@@ -106,6 +110,7 @@ class StartOfStory {
                         } else if (quarter.equals("3")) {
                             System.out.println("You head down stairs");
                             second_floor.second_floor2();
+                            break;
 
                         }
 
